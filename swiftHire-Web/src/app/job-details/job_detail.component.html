@@ -1,0 +1,15 @@
+<div class="container">
+      <div class="form-horizontal">
+          <fieldset>
+            <legend><h2 class="display-3">Job Details:</h2></legend>
+            <label class="control-label">Title:</label><input type="text" class="form-control" value="{{data.name}}" disabled/>
+            <label class="control-label">Description:</label><textarea class="form-control" cols="8" rows="4" value="{{data.description}}" disabled> </textarea>
+            <label class="control-label">Hours:</label><input type="text" class="form-control" value="{{data.duration}}" disabled/>
+            <label class="control-label">Hour Fee:</label><input type="text" class="form-control" value="{{data.hourFee}}" disabled/>
+            <label class="control-label">Date:</label><input type="text" class="form-control" value="{{data.preferDate}}" disabled/>
+            <label class="control-label">Time:</label><input type="text" class="form-control" value="{{data.preferTime}}" disabled/>
+            <input type="hidden" value="{{id}}"/>
+            <br/>
+          </fieldset>
+      </div>
+</div>

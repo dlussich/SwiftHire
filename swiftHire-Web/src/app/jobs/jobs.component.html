@@ -1,0 +1,89 @@
+<div class="container">
+  <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="navbar-form navbar-left" role="search">
+    <div class="navbar-collapse">
+    <div class="form-group">
+    <ul class="nav navbar-nav">
+      <li><label class="label-control">
+        <input type="radio" value="fee" name="filter" formControlName="filter" checked/>     
+        Fee
+      </label></li>
+      <li><label class="label-control">
+        <input type="radio" value="category" name="filter" formControlName="filter"/>     
+        Category
+      </label></li> 
+      <li><label class="label-control">
+        <input type="radio" value="location" name="filter" formControlName="filter"/>     
+        Location
+      </label></li>
+      </ul>
+    </div> 
+    <div class="form-group">
+      <div *ngIf="searchForm.controls['filter'].value!=='location'">
+        <div *ngIf="searchForm.controls['filter'].value=='fee'; else categories">
+            <input type="text" class="form-control" formControlName="search" placeholder="Search">
+        </div>
+        <ng-template #categories>
+            <select class="form-control" formControlName="dropList">
+              <option *ngFor="let c of categoryList" [value]="c">{{c}}</option>
+            </select>
+        </ng-template>
+      </div>
+    </div>
+    <button type="submit" [disabled]="!searchForm.valid" class="btn btn-primary">Search</button>
+    </div>
+    </form>
+
+  <br><br>
+  <h1 class="text-center">Job Offers</h1>
+  <div *ngIf="searched">
+    <table class="table table-stripped">
+    <thead>
+    <tr class="row">
+        <th class="header">Title</th>
+        <th class="header">Hours</th>
+        <th class="header">Payment Fee</th>
+        <th class="header">Category</th>
+        <th class="header">Date</th>
+        <th class="header">Time</th>
+        <th class="header"></th>
+    </tr>
+    </thead>
+    <tr class="row" *ngFor="let j of searchedJobs">
+      <td>{{j.name}}</td>
+      <td>{{j.duration}}</td>
+      <td>{{j.hourFee}}</td>
+      <td>{{j.category}}</td>
+      <td>{{j.preferDate | date:"MM-dd-yyyy"}}</td>
+      <td>{{j.preferTime}}</td>
+     <td><a [routerLink]="['details']" class="btn btn-primary" (click)="select(j._id)">Details</a></td>
+    </tr>
+    </table>
+  </div>
+  <div *ngIf="!searched">
+    <table class="table table-stripped">
+    <thead>
+    <tr class="row">
+        <th class="header">Title</th>
+        <th class="header">Hours</th>
+        <th class="header">Payment Fee</th>
+        <th class="header">Category</th>
+        <th class="header">Date</th>
+        <th class="header">Time</th>
+        <th class="header"></th>
+    </tr>
+    </thead>
+    <tr class="row" *ngFor="let j of closeJobs">
+      <td>{{j.name}}</td>
+      <td>{{j.duration}}</td>
+      <td>{{j.hourFee}}</td>
+      <td>{{j.category}}</td>
+      <td>{{j.preferDate | date:"MM-dd-yyyy"}}</td>
+      <td>{{j.preferTime}}</td>
+     <td><a  class="btn btn-primary" (click)="selectedData=j" >Details</a></td>
+    </tr>
+    </table>
+  </div>
+  
+    <router-outlet></router-outlet>
+    <app-job-details *ngIf="selectedData" [data]="selectedData"></app-job-details>
+</div>  

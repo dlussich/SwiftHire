@@ -1,0 +1,36 @@
+<div class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a [routerLink]="['']" class="navbar-brand" >SwiftHire</a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a [routerLink]="['jobs', 'posted']" class="dropdown-toggle" data-toggle="dropdown"> Posted Jobs </a>
+            </li>
+             <li class="dropdown">
+                <a [routerLink]="['jobs', 'enrolled']" class="dropdown-toggle" data-toggle="dropdown"> Enrolled Jobs </a>
+            </li>
+            <li class="dropdown">
+                <a [routerLink]="['jobs', 'addJob']" class="dropdown-toggle" data-toggle="dropdown"> Create Post </a>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><toolbar></toolbar></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="col-md-8">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+
+    <!--<createjob [jobObj]="tempObj"></createjob>-->
+
+<!--<ratecomment [jobObj]="tempObj"></ratecomment>-->
